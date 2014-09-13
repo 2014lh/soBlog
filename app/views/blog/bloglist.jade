@@ -24,7 +24,7 @@ block content
                         span #{post.time.day}
                         if post.tags.length
                             a.pull-right(href='tag/'+post.tags[0].tag,target='_blank')
-                                i.icon-tags
+                                i.fa.fa-tags
                                 =post.tags[0].tag
 
             .row.ajax.text-center
