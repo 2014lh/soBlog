@@ -31,7 +31,7 @@
 
   b32 = t2.encode(key);
 
-  console.log(b32.toString());
+  console.log("key for googleAuth app: " + b32.toString());
 
   exports.index = function(req, res) {
     return Cover.readTopAndCount(function(err, cover, count) {
