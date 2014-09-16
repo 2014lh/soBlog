@@ -90,6 +90,8 @@ OK, soBlog just a demo, not a product, so, if you want to use it to build your b
 
 It built in express4, jade, mongoose, bootstrap, so it may do some help for a node.js beginner.
 
+And also , you should make a `upload_tmp` dir. 
+
 ## Screenshot 
 
 <img width="" height="" class="amd-center" src="http://lingyong-me.qiniudn.com/Screenshot_2014-09-13-11-45-41.png 2014-9-13 11:49-px1366" alt="screenshot" />
