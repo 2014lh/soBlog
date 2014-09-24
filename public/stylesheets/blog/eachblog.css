@@ -101,7 +101,7 @@ body .eachblog {
   margin-top: 50px;
   max-width: 900px;
   padding: 10px;
-  line-height: 1.7em;
+  line-height: 1.9em;
 }
 body .eachblog .row {
   margin-left: 0;
@@ -125,7 +125,7 @@ body .eachblog .blog-head > h1 {
 }
 body .eachblog .blog-content {
   color: rgba(0, 0, 0, 0.75);
-  font-size: 15px;
+  font-size: 16px;
 }
 body .eachblog .blog-content h1:hover,
 body .eachblog .blog-content h2:hover,
