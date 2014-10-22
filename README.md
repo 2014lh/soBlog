@@ -1,7 +1,7 @@
 soBlog
 ============
 
->A simple blog built by node.js , express4 and mongodb. Live demo just look at here : [lingyong.me](http://lingyong.me)
+>A simple blog built by node.js , express4 and mongodb. Live demo : [lingyong.me](http://lingyong.me)
 
 
 
@@ -82,13 +82,13 @@ key for googleAuth app: KRUGS427NFZV6YK7MRSW233FL5QXK5DINNSXS===
 Express server listening on port 3000
 connected
 ```
-So you should copy the `key for googleAuth app` to your googleAuth app.
+You should copy the `key for googleAuth app` to your googleAuth app.
 
 ## Watch out
 
-OK, soBlog just a demo, not a product, so, if you want to use it to build your blog, you must be careful. 
+OK, soBlog just a demo, not a product, so, if you want to use it to build your own blog, you must be careful. 
 
-It built in express4, jade, mongoose, bootstrap, so it may do some help for a node.js beginner.
+It is built in express4, jade, mongoose, bootstrap. It may do some help for a node.js beginner.
 
 And also , you should make a `upload_tmp` dir. 
 
