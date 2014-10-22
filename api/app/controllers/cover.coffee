@@ -13,6 +13,7 @@ marked.setOptions
   sanitize: false,
   smartLists: true,
   smartypants: false
+
 exports.index = (req, res)->
   Cover.find({}).sort(date: -1).exec (err, covers)->
     if err
