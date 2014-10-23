@@ -90,7 +90,7 @@ OK, soBlog just a demo, not a product, so, if you want to use it to build your o
 
 It is built in express4, jade, mongoose, bootstrap. It may do some help for a node.js beginner.
 
-And also , you should make a `upload_tmp` dir. 
+Before you can use soBlog, you should create a `upload_tmp` in  root dir. 
 
 ## Screenshot 
 
