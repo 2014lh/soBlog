@@ -25,7 +25,6 @@
         "async": "*",
         "gm": "*",
         "ccap": "*",
-        "nodemailer": "*",
         "notp": "*",
         "thirty-two": "*",
         "transformers": "*",
