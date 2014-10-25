@@ -123,17 +123,30 @@
       }).exec();
     },
     returnView: function(year, month, cb) {
-      var condition;
+      var condition, initial, keys, reduce;
+      keys = {
+        'time.month': true
+      };
       condition = null;
-      return this.collection.group({
-        "time.month": true
-      }, condition, {
+      initial = {
         count: 0,
         blogs: []
-      }, function(doc, aggregator) {
+      };
+      reduce = function(doc, aggregator) {
         aggregator.count += 1;
         return aggregator.blogs.push(doc);
-      }, null, null, null, function(err, results) {
+      };
+      return this.collection.group(keys, condition, initial, reduce, null, null, null, function(err, results) {
+        var compare, compare2;
+        compare = function(value1, value2) {
+          return new Date(value2['time.month']) - new Date(value1['time.month']);
+        };
+        compare2 = function(value1, value2) {
+          return value1.date - value2.date;
+        };
+        results.sort(compare).forEach(function(item, index, arr) {
+          return item.blogs.sort(compare2);
+        });
         return cb(err, results);
       });
     }

@@ -34,10 +34,15 @@ body .pager table {
 body .pager table thead th {
   text-align: center;
 }
+body .pager table tbody tr {
+  height: 46px;
+  overflow: hidden;
+}
 body .pager table tbody th {
   text-align: center;
   padding: 0;
-  line-height: 45px;
+  line-height: 46px;
+  height: 46px;
 }
 body .pager table tbody th .btn {
   border-radius: 0;
