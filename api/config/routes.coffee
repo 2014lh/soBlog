@@ -1,4 +1,8 @@
 module.exports = (app)->
+  # routerSettings
+  routerSettings = require '../app/controllers/routerSetting'
+  app.all "*", routerSettings.all
+
   # home有关的路由
   home = require '../app/controllers/home'
   app.get '/', home.index
@@ -15,7 +19,6 @@ module.exports = (app)->
   app.get '/blog', blog.blogPerpage
   app.get '/getBlogPerpage', blog.getBlogPerpage
   app.get '/blog/:id', blog.perBlog
-  app.get '/post', home.checkLogin, blog.postView
   app.post '/post', home.checkLogin, blog.post
   app.post '/postimg', home.checkLogin, blog.postImg
   app.get '/editblog/:id', home.checkLogin, blog.editBlogView
@@ -24,12 +27,12 @@ module.exports = (app)->
   app.get '/deleteblog', home.checkLogin, blog.deleteBlog
   app.get '/settopblog', home.checkLogin, blog.setTop
 
-
+  # /tag
   tag = require '../app/controllers/tag'
   app.get '/tag', tag.getAllTags
   app.get '/tag/:tag', tag.eachTag
 
-
+  # /cover
   cover = require '../app/controllers/cover'
   app.get '/cover', cover.index
   app.get '/cover/:id', cover.eachCover
@@ -41,5 +44,3 @@ module.exports = (app)->
   app.get '/settopcover', home.checkLogin, cover.setTop
 
 
-
-  return

@@ -3,15 +3,15 @@ mongoose = require 'mongoose'
 ArticleSub = require '../help/ArticleSub'
 path = require 'path'
 join = path.join
-settings = require '../../settings'
+settings = require '../../../settings'
 fs = require 'fs'
 async = require 'async'
 Cover = require '../models/Cover'
 formidable = require 'formidable'
-env=require('jsdom').env
-qn=require 'qn'
-marked=require 'marked'
-sanitizeHtml=require 'sanitize-html'
+env = require('jsdom').env
+qn = require 'qn'
+marked = require 'marked'
+sanitizeHtml = require 'sanitize-html'
 
 marked.setOptions
   renderer: new marked.Renderer(),
@@ -23,9 +23,10 @@ marked.setOptions
   smartLists: true,
   smartypants: false
 
+
 Perpage = settings.perPageBlogSize
-html="<html><body></body></html>"
-client=qn.create settings.QnClient
+html = "<html><body></body></html>"
+client = qn.create settings.QnClient
 
 postPre = (req, res, cb)->
   req.assert('text', 'Content should not be empty！').notEmpty()
@@ -38,107 +39,78 @@ postPre = (req, res, cb)->
   else
     content = req.body.text
     title = req.body.title
-    tags=[]
-    tags.push({tag:req.body['tag'+i.toString()],id:i}) for i in [1..3]
+    tags = []
+    tags.push({tag: req.body['tag' + i.toString()], id: i}) for i in [1..3]
     console.log tags
     imgs = []
-#    converter = new showdown.converter
-#      extensions: ['table']
-#    blogHtml=converter.makeHtml(content)
-    blogHtml=marked content
-    #console.log blogHtml
+    blogHtml = marked content
     img = ''
-    text=sanitizeHtml blogHtml,
-      allowedTags:[ 'a','p','pre','ul','li','em','b','i']
+    text = sanitizeHtml blogHtml,
+      allowedTags: ['a', 'p', 'pre', 'ul', 'li', 'em', 'b', 'i']
       allowedAttributes:
-        'a':['href']
+        'a': ['href']
     text = ArticleSub.subArtc(text, 200).toString() + ''
     contentBegin = text.replace /<img.*?>/ig, ""
     date = new Date()
     ip = req.ip
-    env html,(err,window)->
+    env html, (err, window)->
       console.log err
-      $=require('jquery')(window)
+      $ = require('jquery')(window)
       $('body').append(blogHtml)
       $('img').each (index)->
         imgs.push $(this).attr("src")
-        console.log imgs
-        if index==0
-          img=$(this).attr("src")
+        if index == 0
+          img = $(this).attr("src")
           cb content, title, tags, imgs, contentBegin, img, date, ip
-      if $('img').length==0
+      if $('img').length == 0
         cb content, title, tags, imgs, contentBegin, img, date, ip
 
-
-
-  return
 exports.blogPerpage = (req, res)->
-  Blog.returnPerpageBlogIndex(Perpage, (err, blogs, count)->
+  Blog.returnPerpageBlogIndex Perpage, (err, blogs, count)->
     if err
       blogs = []
-    #console.log blogs[0].contentBegin.toString()
-    res.render 'blog/bloglist',
-      title: settings.titles.blog_bloglist,
-      posts: blogs,
-      OnlyOnePage: count <= Perpage,
-      user: req.session.user
-  )
+    res.json
+      blogs: blogs
+      onlyOnePage: count <= Perpage
+
 exports.getBlogPerpage = (req, res)->
-  page = parseInt(req.query.page)
-  Blog.returnPerpageBlog(Perpage, page, (err, blogs, count)->
+  page = parseInt req.query.page
+  Blog.returnPerpageBlog Perpage, page, (err, blogs, count)->
     if err
       res.json
         success: false
         info: 'fail to get！'
     else
-      isLastPage = ((page - 1) * Perpage + blogs.length) == count;
+      isLastPage = ((page - 1) * Perpage + blogs.length) == count
       res.json
         total: count
         success: true
         blogs: blogs
         isLastPage: isLastPage
-  )
+
 
 exports.perBlog = (req, res)->
   id = req.params.id
   Blog.updateBlogPv(id)
-  Blog.returnBlogById(id, (err, blog)->
+  Blog.returnBlogById id, (err, blog)->
     if err
       blog = {}
-    #console.log blog.content
-#    converter = new showdown.converter()
-#    blog.content=converter.makeHtml(blog.content)
-    blog.content=marked blog.content
-    res.render 'blog/perBlog',
-      title: blog.title + " · " +settings.titles.blog_perBlog
+    blog.content = marked blog.content
+    res.json
       blog: blog
-      blogid: req.params.id
-      user: req.session.user
-  )
+      blogId: req.params.id
 
-exports.postView = (req, res)->
-  count = 1
-  tags = []
-  while count < 4
-    tags.push({tag: '', id: count})
-    count++
-  res.render 'blog/post',
-    title: settings.titles.blog_post,
-    user: req.session.user
-    blog: new Blog({tags: tags,content:''})
-    action: "post"
 exports.post = (req, res)->
-  postPre(req, res, (content, title, tags, imgs, contentBegin, img, date, ip)->
-
-    blog = new Blog(
+  postPre req, res, (content, title, tags, imgs, contentBegin, img, date, ip)->
+    blog = new Blog
       content: content,
       title: title,
       contentBegin: contentBegin,
       tags: tags,
       img:
-        px600: img.replace 'px1366','px600'
-        px200: img.replace 'px1366','px200'
-        original: img.replace 'px1366',''
+        px600: img.replace 'px1366', 'px600'
+        px200: img.replace 'px1366', 'px200'
+        original: img.replace 'px1366', ''
         px1366: img
 
       imgs: imgs,
@@ -149,107 +121,105 @@ exports.post = (req, res)->
         month: date.getFullYear() + "-" + (date.getMonth() + 1),
         day: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
         minute: date.getHours() + ':' + date.getMinutes()
-
-
       ip: ip
-    )
-    blog.save((err)->
+
+    blog.save (err)->
       if err?
         res.json
-          success:false
-          err:err
+          success: false
+          err: err
       else
-        res.redirect 'blog'
-    )
-  )
+        res.json
+          success: true
+
+
 exports.postImg = (req, res)->
   form = new formidable.IncomingForm()
-  form.encoding='utf-8'
-  form.uploadDir =path.join settings.root, 'upload_tmp'
+  form.encoding = 'utf-8'
+  form.uploadDir = path.join settings.root, 'upload_tmp'
   form.keepExtensions = true
   form.maxFieldsSize = 2 * 1024 * 1024
-  form.keepAlive=true
-  postFrom=""
-  if req.path=='/post'
-    postFrom='blog'
+  form.keepAlive = true
+  postFrom = ""
+  if req.path == '/post'
+    postFrom = 'blog'
   else
-    postFrom='cover'
-  form.parse req,(err,fields, files)->
+    postFrom = 'cover'
+  form.parse req, (err, fields, files)->
     if err
       res.json
-        success:false
+        success: false
       return
 
-    extName=''
-    #console.log files
+    extName = ''
     switch files.upload.type
-      when 'image/pjpeg' then extName='jpg'
-      when 'image/jpeg' then extName='jpg'
-      when 'image/png' then extName='png'
-      when 'image/x-png' then extName='png'
-    console.log extName
-    if extName.length==0
+      when 'image/pjpeg' then extName = 'jpg'
+      when 'image/jpeg' then extName = 'jpg'
+      when 'image/png' then extName = 'png'
+      when 'image/x-png' then extName = 'png'
+    if extName.length == 0
       res.json
-        success:false
+        success: false
       return
     date = new Date()
     img = files.upload
-    name =img.name+" "+date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()
+    name = img.name + " " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes()
 
-    client.uploadFile files.upload.path,{key:name},(err,result)->
+    client.uploadFile files.upload.path, {key: name}, (err, result)->
       if err
         res.json
-          success:false
+          success: false
         return
       fs.unlink files.upload.path
       res.json
-            success: true
-            form:postFrom
-            path:
-              original: result.url
-              px200: result.url+"-px200"
-              px600: result.url+"-px600"
-              px1366: result.url+"-px1366"
+        success: true
+        form: postFrom
+        path:
+          original: result.url
+          px200: result.url + "-px200"
+          px600: result.url + "-px600"
+          px1366: result.url + "-px1366"
 
 exports.editBlogView = (req, res)->
-  id = mongoose.Types.ObjectId(req.params.id)
+  id = mongoose.Types.ObjectId req.params.id
   Blog.findById id, null, (err, doc)->
+    if err
+      res.json
+        success: false
     count = 1
     len = doc.tags.length
     while count < 4 - len
-      doc.tags.push({tag: ''})
+      doc.tags.push
+        tag: ''
       count++
-
-
-    res.render 'blog/post',
-      title: settings.titles.blog_edit,
-      blog: doc,
-      user: req.session.user
-      action: "editblog"
+    res.json
+      blog: doc
+      success: true
 
 exports.editBlog = (req, res)->
   id = req.params.id
   postPre req, res, (content, title, tags, imgs, contentBegin, img, date, ip)->
-
     blog =
       content: content,
       title: title,
       contentBegin: contentBegin,
       tags: tags,
       img:
-        px600: img.replace 'px1366','px600'
-        px200: img.replace 'px1366','px200'
-        original: img.replace 'px1366',''
+        px600: img.replace 'px1366', 'px600'
+        px200: img.replace 'px1366', 'px200'
+        original: img.replace 'px1366', ''
         px1366: img
 
       imgs: imgs
 
-    Blog.update {_id: id}, {$set: blog, $push: {"editDate": {date: date, ip: ip}}}, (err, num, row)->
+    Blog.update {_id: id}, {$set: blog, $push: {"editDate": {date: date, ip: ip}}}, (err, num)->
       if err and num == 0
         res.json
           success: false
       else
-        res.redirect '/blog'
+        res.json
+          success: true
+
 
 exports.viewIndex = (req, res)->
   Blog.returnView null, null, (err, monthBlogs)->
@@ -259,47 +229,30 @@ exports.viewIndex = (req, res)->
       title: settings.titles.blog_view
       MonthBlogs: monthBlogs
       user: req.session.user
+
 exports.deleteBlog = (req, res)->
   id = req.query.id
   console.log id
-  Blog.remove({_id: id}).exec (err)->
+  Blog.remove
+    _id: id
+  .exec (err)->
     if err
-      res.json({success: false})
+      res.json
+        success: false
     else
-      res.json({success: true})
+      res.json
+        success: true
+
 exports.setTop = (req, res)->
   istop = false
   id = req.query.id
   if req.query.istop == 'true'
     istop = true
-  Blog.update({_id: id}, {$set: {isTop: istop}}).exec (err)->
+  Blog.setBlogToTop id, istop, (err)->
     if err
-      res.json({success: false})
+      res.json
+        success: false
     else
-      res.json({success: true})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      res.json
+        success: true
 

@@ -2,7 +2,7 @@ async = require 'async'
 Blog = require '../models/Blog'
 mongoose = require 'mongoose'
 ArticleSub = require '../help/ArticleSub'
-settings=require '../../settings'
+settings=require '../../../settings'
 
 exports.getAllTags = (req, res)->
   tagsInfo = []

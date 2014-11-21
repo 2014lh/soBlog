@@ -1,0 +1,222 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 warn package.json soblog@0.0.0 No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/Users/soliury/soliury/learn/node/soBlog',
+6 verbose install   [ 'grunt',
+6 verbose install     'grunt-autoprefixer',
+6 verbose install     'grunt-concurrent',
+6 verbose install     'grunt-contrib-clean',
+6 verbose install     'grunt-contrib-concat',
+6 verbose install     'grunt-contrib-connect',
+6 verbose install     'grunt-contrib-copy',
+6 verbose install     'grunt-contrib-cssmin',
+6 verbose install     'grunt-contrib-htmlmin',
+6 verbose install     'grunt-contrib-imagemin',
+6 verbose install     'grunt-contrib-jshint',
+6 verbose install     'grunt-contrib-uglify',
+6 verbose install     'grunt-contrib-watch',
+6 verbose install     'grunt-filerev',
+6 verbose install     'grunt-google-cdn',
+6 verbose install     'grunt-newer',
+6 verbose install     'grunt-ng-annotate',
+6 verbose install     'grunt-svgmin',
+6 verbose install     'grunt-usemin',
+6 verbose install     'grunt-wiredep',
+6 verbose install     'jshint-stylish',
+6 verbose install     'load-grunt-tasks',
+6 verbose install     'time-grunt' ] ]
+7 info preinstall soblog@0.0.0
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping grunt-autoprefixer@^0.7.3 /Users/soliury/soliury/learn/node/soBlog
+10 verbose already installed skipping grunt-concurrent@^0.5.0 /Users/soliury/soliury/learn/node/soBlog
+11 verbose already installed skipping grunt-contrib-clean@^0.5.0 /Users/soliury/soliury/learn/node/soBlog
+12 verbose already installed skipping grunt-contrib-concat@^0.4.0 /Users/soliury/soliury/learn/node/soBlog
+13 verbose already installed skipping grunt-contrib-connect@^0.7.1 /Users/soliury/soliury/learn/node/soBlog
+14 verbose already installed skipping grunt-contrib-copy@^0.5.0 /Users/soliury/soliury/learn/node/soBlog
+15 verbose already installed skipping grunt-contrib-cssmin@^0.9.0 /Users/soliury/soliury/learn/node/soBlog
+16 verbose already installed skipping grunt-contrib-htmlmin@^0.3.0 /Users/soliury/soliury/learn/node/soBlog
+17 verbose already installed skipping grunt-contrib-imagemin@^0.8.1 /Users/soliury/soliury/learn/node/soBlog
+18 verbose already installed skipping grunt-contrib-jshint@^0.10.0 /Users/soliury/soliury/learn/node/soBlog
+19 verbose already installed skipping grunt-contrib-uglify@^0.4.0 /Users/soliury/soliury/learn/node/soBlog
+20 verbose already installed skipping grunt-contrib-watch@^0.6.1 /Users/soliury/soliury/learn/node/soBlog
+21 verbose already installed skipping grunt-filerev@^0.2.1 /Users/soliury/soliury/learn/node/soBlog
+22 verbose already installed skipping grunt-google-cdn@^0.4.0 /Users/soliury/soliury/learn/node/soBlog
+23 verbose already installed skipping grunt-newer@^0.7.0 /Users/soliury/soliury/learn/node/soBlog
+24 verbose already installed skipping grunt-ng-annotate@^0.3.0 /Users/soliury/soliury/learn/node/soBlog
+25 verbose already installed skipping grunt-svgmin@^0.4.0 /Users/soliury/soliury/learn/node/soBlog
+26 verbose already installed skipping grunt-usemin@^2.1.1 /Users/soliury/soliury/learn/node/soBlog
+27 verbose already installed skipping grunt-wiredep@^1.7.0 /Users/soliury/soliury/learn/node/soBlog
+28 verbose already installed skipping jshint-stylish@^0.2.0 /Users/soliury/soliury/learn/node/soBlog
+29 verbose already installed skipping load-grunt-tasks@^0.4.0 /Users/soliury/soliury/learn/node/soBlog
+30 verbose already installed skipping time-grunt@^0.3.1 /Users/soliury/soliury/learn/node/soBlog
+31 verbose already installed skipping grunt@^0.4.1 /Users/soliury/soliury/learn/node/soBlog
+32 silly resolved []
+33 info build /Users/soliury/soliury/learn/node/soBlog
+34 verbose linkStuff [ false, false, false, '/Users/soliury/soliury/learn/node' ]
+35 info linkStuff soblog@0.0.0
+36 verbose linkBins soblog@0.0.0
+37 verbose linkMans soblog@0.0.0
+38 verbose rebuildBundles soblog@0.0.0
+39 verbose rebuildBundles [ '.bin',
+39 verbose rebuildBundles   'async',
+39 verbose rebuildBundles   'body-parser',
+39 verbose rebuildBundles   'ccap',
+39 verbose rebuildBundles   'chai',
+39 verbose rebuildBundles   'coffee-script',
+39 verbose rebuildBundles   'compression',
+39 verbose rebuildBundles   'connect-mongo',
+39 verbose rebuildBundles   'cookie-parser',
+39 verbose rebuildBundles   'express',
+39 verbose rebuildBundles   'express-session',
+39 verbose rebuildBundles   'express-validator',
+39 verbose rebuildBundles   'formidable',
+39 verbose rebuildBundles   'gm',
+39 verbose rebuildBundles   'grunt',
+39 verbose rebuildBundles   'grunt-autoprefixer',
+39 verbose rebuildBundles   'grunt-concurrent',
+39 verbose rebuildBundles   'grunt-contrib-clean',
+39 verbose rebuildBundles   'grunt-contrib-concat',
+39 verbose rebuildBundles   'grunt-contrib-connect',
+39 verbose rebuildBundles   'grunt-contrib-copy',
+39 verbose rebuildBundles   'grunt-contrib-cssmin',
+39 verbose rebuildBundles   'grunt-contrib-htmlmin',
+39 verbose rebuildBundles   'grunt-contrib-imagemin',
+39 verbose rebuildBundles   'grunt-contrib-jshint',
+39 verbose rebuildBundles   'grunt-contrib-uglify',
+39 verbose rebuildBundles   'grunt-contrib-watch',
+39 verbose rebuildBundles   'grunt-filerev',
+39 verbose rebuildBundles   'grunt-google-cdn',
+39 verbose rebuildBundles   'grunt-karma',
+39 verbose rebuildBundles   'grunt-newer',
+39 verbose rebuildBundles   'grunt-ng-annotate',
+39 verbose rebuildBundles   'grunt-svgmin',
+39 verbose rebuildBundles   'grunt-usemin',
+39 verbose rebuildBundles   'grunt-wiredep',
+39 verbose rebuildBundles   'imagemin-gifsicle',
+39 verbose rebuildBundles   'imagemin-jpegtran',
+39 verbose rebuildBundles   'imagemin-optipng',
+39 verbose rebuildBundles   'jade',
+39 verbose rebuildBundles   'jquery',
+39 verbose rebuildBundles   'jsdom',
+39 verbose rebuildBundles   'jshint-stylish',
+39 verbose rebuildBundles   'karma',
+39 verbose rebuildBundles   'karma-chrome-launcher',
+39 verbose rebuildBundles   'karma-mocha',
+39 verbose rebuildBundles   'karma-phantomjs-launcher',
+39 verbose rebuildBundles   'less-middleware',
+39 verbose rebuildBundles   'load-grunt-tasks',
+39 verbose rebuildBundles   'marked',
+39 verbose rebuildBundles   'method-override',
+39 verbose rebuildBundles   'mm',
+39 verbose rebuildBundles   'mocha',
+39 verbose rebuildBundles   'mongoose',
+39 verbose rebuildBundles   'morgan',
+39 verbose rebuildBundles   'node-dev',
+39 verbose rebuildBundles   'nodemailer',
+39 verbose rebuildBundles   'notp',
+39 verbose rebuildBundles   'qn',
+39 verbose rebuildBundles   'sanitize-html',
+39 verbose rebuildBundles   'serve-static',
+39 verbose rebuildBundles   'should',
+39 verbose rebuildBundles   'supertest',
+39 verbose rebuildBundles   'thirty-two',
+39 verbose rebuildBundles   'time-grunt',
+39 verbose rebuildBundles   'transformers' ]
+40 verbose rebuild bundle /Users/soliury/soliury/learn/node/soBlog/node_modules/async
+41 info build /Users/soliury/soliury/learn/node/soBlog/node_modules/async
+42 info preinstall async@0.9.0
+43 verbose linkStuff [ false,
+43 verbose linkStuff   false,
+43 verbose linkStuff   false,
+43 verbose linkStuff   '/Users/soliury/soliury/learn/node/soBlog/node_modules' ]
+44 info linkStuff async@0.9.0
+45 verbose linkBins async@0.9.0
+46 verbose linkMans async@0.9.0
+47 verbose rebuildBundles async@0.9.0
+48 info install async@0.9.0
+49 info postinstall async@0.9.0
+50 verbose rebuild bundle /Users/soliury/soliury/learn/node/soBlog/node_modules/body-parser
+51 info build /Users/soliury/soliury/learn/node/soBlog/node_modules/body-parser
+52 info preinstall body-parser@1.9.0
+53 verbose linkStuff [ false,
+53 verbose linkStuff   false,
+53 verbose linkStuff   false,
+53 verbose linkStuff   '/Users/soliury/soliury/learn/node/soBlog/node_modules' ]
+54 info linkStuff body-parser@1.9.0
+55 verbose linkBins body-parser@1.9.0
+56 verbose linkMans body-parser@1.9.0
+57 verbose rebuildBundles body-parser@1.9.0
+58 verbose rebuildBundles [ 'bytes',
+58 verbose rebuildBundles   'depd',
+58 verbose rebuildBundles   'iconv-lite',
+58 verbose rebuildBundles   'media-typer',
+58 verbose rebuildBundles   'on-finished',
+58 verbose rebuildBundles   'qs',
+58 verbose rebuildBundles   'raw-body',
+58 verbose rebuildBundles   'type-is' ]
+59 info install body-parser@1.9.0
+60 info postinstall body-parser@1.9.0
+61 verbose rebuild bundle /Users/soliury/soliury/learn/node/soBlog/node_modules/ccap
+62 info build /Users/soliury/soliury/learn/node/soBlog/node_modules/ccap
+63 info preinstall ccap@0.4.3
+64 verbose unsafe-perm in lifecycle true
+65 verbose linkStuff [ false,
+65 verbose linkStuff   false,
+65 verbose linkStuff   false,
+65 verbose linkStuff   '/Users/soliury/soliury/learn/node/soBlog/node_modules' ]
+66 info linkStuff ccap@0.4.3
+67 verbose linkBins ccap@0.4.3
+68 verbose linkMans ccap@0.4.3
+69 verbose rebuildBundles ccap@0.4.3
+70 info install ccap@0.4.3
+71 verbose unsafe-perm in lifecycle true
+72 info postinstall ccap@0.4.3
+73 verbose rebuild bundle /Users/soliury/soliury/learn/node/soBlog/node_modules/chai
+74 info build /Users/soliury/soliury/learn/node/soBlog/node_modules/chai
+75 info preinstall chai@1.9.2
+76 verbose linkStuff [ false,
+76 verbose linkStuff   false,
+76 verbose linkStuff   false,
+76 verbose linkStuff   '/Users/soliury/soliury/learn/node/soBlog/node_modules' ]
+77 info linkStuff chai@1.9.2
+78 verbose linkBins chai@1.9.2
+79 verbose linkMans chai@1.9.2
+80 verbose rebuildBundles chai@1.9.2
+81 verbose rebuildBundles [ 'assertion-error', 'deep-eql' ]
+82 info install chai@1.9.2
+83 info postinstall chai@1.9.2
+84 verbose rebuild bundle /Users/soliury/soliury/learn/node/soBlog/node_modules/coffee-script
+85 info build /Users/soliury/soliury/learn/node/soBlog/node_modules/coffee-script
+86 info preinstall coffee-script@1.8.0
+87 verbose linkStuff [ false,
+87 verbose linkStuff   false,
+87 verbose linkStuff   false,
+87 verbose linkStuff   '/Users/soliury/soliury/learn/node/soBlog/node_modules' ]
+88 info linkStuff coffee-script@1.8.0
+89 warn prefer global coffee-script@1.8.0 should be installed with -g
+90 verbose linkBins coffee-script@1.8.0
+91 verbose link bins [ { coffee: './bin/coffee', cake: './bin/cake' },
+91 verbose link bins   '/Users/soliury/soliury/learn/node/soBlog/node_modules/.bin',
+91 verbose link bins   false ]
+92 verbose linkMans coffee-script@1.8.0
+93 verbose rebuildBundles coffee-script@1.8.0
+94 verbose rebuildBundles [ 'mkdirp' ]
+95 error Error: EACCES, unlink '/Users/soliury/soliury/learn/node/soBlog/node_modules/.bin/coffee'
+95 error  { [Error: EACCES, unlink '/Users/soliury/soliury/learn/node/soBlog/node_modules/.bin/coffee']
+95 error   errno: 3,
+95 error   code: 'EACCES',
+95 error   path: '/Users/soliury/soliury/learn/node/soBlog/node_modules/.bin/coffee' }
+96 error Please try running this command again as root/Administrator.
+97 error System Darwin 14.0.0
+98 error command "node" "/usr/local/bin/npm" "install"
+99 error cwd /Users/soliury/soliury/learn/node/soBlog
+100 error node -v v0.10.33
+101 error npm -v 1.4.28
+102 error path /Users/soliury/soliury/learn/node/soBlog/node_modules/.bin/coffee
+103 error code EACCES
+104 error errno 3
+105 error stack Error: EACCES, unlink '/Users/soliury/soliury/learn/node/soBlog/node_modules/.bin/coffee'
+106 verbose exit [ 3, true ]

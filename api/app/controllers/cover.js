@@ -8,7 +8,7 @@
 
   ArticleSub = require('../help/ArticleSub');
 
-  settings = require('../../settings');
+  settings = require('../../../settings');
 
   marked = require('marked');
 
@@ -42,9 +42,9 @@
   exports.eachCover = function(req, res) {
     var id;
     id = req.params.id;
-    Cover.update({
+    Cover.where({
       _id: id
-    }, {
+    }).update({
       $inc: {
         "pv": 1
       }
@@ -95,9 +95,9 @@
         px1366: img + "-px1366"
       }
     };
-    return Cover.update({
+    return Cover.where({
       _id: id
-    }, {
+    }).update({
       $set: cover,
       $push: {
         "editdate": {
@@ -190,9 +190,9 @@
     if (req.query.istop === 'true') {
       istop = true;
     }
-    return Cover.update({
+    return Cover.where({
       _id: id
-    }, {
+    }).update({
       $set: {
         isTop: istop
       }
@@ -210,5 +210,3 @@
   };
 
 }).call(this);
-
-//# sourceMappingURL=cover.js.map

@@ -1,8 +1,8 @@
 Cover = require '../models/Cover'
 mongoose = require 'mongoose'
 ArticleSub = require '../help/ArticleSub'
-settings=require '../../settings'
-marked=require 'marked'
+settings = require '../../../settings'
+marked = require 'marked'
 
 marked.setOptions
   renderer: new marked.Renderer(),
@@ -15,31 +15,38 @@ marked.setOptions
   smartypants: false
 
 exports.index = (req, res)->
-  Cover.find({}).sort(date: -1).exec (err, covers)->
+  Cover.find {}
+  .sort date: -1
+  .exec (err, covers)->
     if err
       covers = []
     else
-
       res.render 'cover/cover',
         title: settings.titles.cover
         covers: covers
         user: req.session.user
 exports.eachCover = (req, res)->
-
   id = req.params.id
-  Cover.update({_id: id}, {$inc: {"pv": 1}}).exec()
-  Cover.findById(id).exec (err, cover)->
+  Cover.where
+    _id: id
+  .update
+      $inc:
+        "pv": 1
+  .exec()
+  Cover.findById id
+  .exec (err, cover)->
     if err
       cover = {}
-    cover.content=marked cover.content
+    cover.content = marked cover.content
     res.render 'cover/eachcover',
-      title: cover.title + " · "+settings.titles.eachCover,
+      title: cover.title + " · " + settings.titles.eachCover,
       cover: cover,
       user: req.session.user
 
 exports.editCoverView = (req, res)->
   id = req.params.id
-  Cover.findById(id).exec (err, cover)->
+  Cover.findById id
+  .exec (err, cover)->
     res.render 'cover/postcover',
       title: settings.titles.editCover
       cover: cover
@@ -47,12 +54,12 @@ exports.editCoverView = (req, res)->
 exports.editCover = (req, res)->
   img = ''
 
-  contentBegin=marked(req.body.quote)
+  contentBegin = marked(req.body.quote)
   date = new Date()
   ip = req.ip
   img = req.body.img
   id = req.params.id
-  quote =req.body.quote
+  quote = req.body.quote
 
   cover =
     content: req.body.text
@@ -60,27 +67,35 @@ exports.editCover = (req, res)->
     contentBegin: contentBegin
     quote: quote
     img:
-        px600: img+"-px600"
-        px200: img+"-px200"
-        original: img
-        px1366: img+"-px1366"
-  Cover.update({_id: id}, {$set: cover, $push: {"editdate": {date: date, ip: ip}}}).exec (err, cover)->
+      px600: img + "-px600"
+      px200: img + "-px200"
+      original: img
+      px1366: img + "-px1366"
+  Cover.where
+    _id: id
+  .update
+      $set: cover
+      $push:
+        "editdate":
+          date: date
+          ip: ip
+  .exec (err, cover)->
     if err
-      res.send('update failed！')
+      res.send 'update failed！'
     else
-      res.redirect('/cover/' + id)
+      res.redirect '/cover/' + id
 exports.postCoverView = (req, res)->
   res.render 'cover/postcover',
     title: settings.titles.postCover
-    action:'post'
+    action: 'post'
     user: req.session.user
 
 
 exports.postCover = (req, res)->
   img = ''
   imgs = [];
-  contentBegin=marked(req.body.quote)
-  imgs.push(req.body.img)
+  contentBegin = marked req.body.quote
+  imgs.push req.body.img
   if imgs and imgs.length > 0
     img = imgs[0]
   date = new Date()
@@ -95,10 +110,10 @@ exports.postCover = (req, res)->
     imgs: imgs,
 
     img:
-      px600: img+"-px600"
-      px200: img+"-px200"
+      px600: img + "-px600"
+      px200: img + "-px200"
       original: img
-      px1366: img+"-px1366"
+      px1366: img + "-px1366"
 
 
     date: date,
@@ -113,27 +128,37 @@ exports.postCover = (req, res)->
   cover.save (err)->
     if err
       req.session.error = err;
-      res.send(' Post failed！');
+      res.send ' Post failed！';
     else
       res.redirect('/cover/' + cover._id)
 exports.deleteCover = (req, res)->
   id = req.query.id
-  Cover.remove({_id: id}).exec (err)->
+  Cover.remove _id: id
+  .exec (err)->
     if err
-      res.json({success: false})
+      res.json
+        success: false
     else
-      res.json({success: true})
+      res.json
+        success: true
 exports.setTop = (req, res)->
   istop = false
   id = req.query.id
   if req.query.istop == 'true'
     istop = true
-  Cover.update({_id: id}, {$set: {isTop: istop}}).exec (err)->
+  Cover.where
+    _id: id
+  .update
+      $set:
+        isTop: istop
+  .exec (err)->
     if err
-      res.json({success: false})
+      res.json
+        success: false
     else
-      res.json({success: true})
-      
+      res.json
+        success: true
+
 
 
 

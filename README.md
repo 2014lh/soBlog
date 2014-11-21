@@ -24,6 +24,7 @@ sudo npm install
 And then, edit the settings.example.js to settings.js.
 
 ```
+
 (function() {
   module.exports = {
     cookieParser: '',    

@@ -1,10 +1,10 @@
-Cover = require '../models/Cover.js'
+Cover = require '../models/Cover'
 async = require 'async'
-Blog = require '../models/Blog.js'
+Blog = require '../models/Blog'
 notp = require 'notp'
-settings=require '../../settings.js'
+settings = require '../../../settings'
 t2 = require 'thirty-two'
-marked=require 'marked'
+marked = require 'marked'
 
 
 marked.setOptions
@@ -19,7 +19,10 @@ marked.setOptions
 
 key = settings.googleAuthKey
 b32 = t2.encode key
-console.log "key for googleAuth app: " +b32.toString()
+console.log "key for googleAuth app: " + b32.toString()
+
+
+
 exports.index = (req, res)->
   Cover.readTopAndCount (err, cover, count)->
     total = 0
@@ -32,7 +35,7 @@ exports.index = (req, res)->
     else
       hasCover: true
       total: count
-      cover.content=marked cover.content
+      cover.content = marked cover.content
 
     Blog.returnTopBlog (err, blogs)->
       if err
@@ -59,13 +62,13 @@ exports.about = (req, res)->
     else
       hasCover: true
       total: count
-      cover.content=marked cover.content
+      cover.content = marked cover.content
 
     res.render 'home/about',
-        title: settings.titles.index
-        user: req.session.user
-        cover: cover
-        total: count
+      title: settings.titles.index
+      user: req.session.user
+      cover: cover
+      total: count
     return
 
 exports.manage = (req, res)->
