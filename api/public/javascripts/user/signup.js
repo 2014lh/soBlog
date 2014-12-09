@@ -17,5 +17,3 @@
   });
 
 }).call(this);
-
-//# sourceMappingURL=signup.js.map
